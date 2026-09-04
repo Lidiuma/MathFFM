@@ -26,18 +26,20 @@ public interface Tuple2FFM<N> {
         write(destination, 0, tuple);
     }
 
-    <T extends UnaryTuple2<N>> T read(MemorySegment source, long index, Builder<T, N> builder);
+    <T extends UnaryTuple2<N>> T read(MemorySegment source, long index, Factory<T, N> factory);
 
-    default <T extends UnaryTuple2<N>> T read(MemorySegment source, Builder<T, N> builder) {
-        return read(source, 0, builder);
+    default <T extends UnaryTuple2<N>> T read(MemorySegment source, Factory<T, N> factory) {
+        return read(source, 0, factory);
     }
 
     @FunctionalInterface
-    interface Builder<T extends UnaryTuple2<N>, N> {
-        T build(N x, N y);
+    interface Factory<T extends UnaryTuple2<N>, N> {
+        T create(N x, N y);
     }
 
     final class I8 implements Tuple2FFM<Byte> {
+
+        private I8() {}
 
         private static ValueLayout.OfByte layout() {
             return JAVA_BYTE;
@@ -64,10 +66,10 @@ public interface Tuple2FFM<N> {
         }
 
         @Override
-        public <T extends UnaryTuple2<Byte>> T read(MemorySegment source, long index, Builder<T, Byte> builder) {
+        public <T extends UnaryTuple2<Byte>> T read(MemorySegment source, long index, Factory<T, Byte> factory) {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
-            return builder.build(
+            return factory.create(
                     source.getAtIndex(layout, at    ),
                     source.getAtIndex(layout, at + 1)
             );
@@ -75,6 +77,8 @@ public interface Tuple2FFM<N> {
     }
 
     final class I16 implements Tuple2FFM<Short> {
+
+        private I16() {}
 
         private static ValueLayout.OfShort layout() {
             return JAVA_SHORT;
@@ -101,10 +105,10 @@ public interface Tuple2FFM<N> {
         }
 
         @Override
-        public <T extends UnaryTuple2<Short>> T read(MemorySegment source, long index, Builder<T, Short> builder) {
+        public <T extends UnaryTuple2<Short>> T read(MemorySegment source, long index, Factory<T, Short> factory) {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
-            return builder.build(
+            return factory.create(
                     source.getAtIndex(layout, at    ),
                     source.getAtIndex(layout, at + 1)
             );
@@ -112,6 +116,8 @@ public interface Tuple2FFM<N> {
     }
 
     final class I32 implements Tuple2FFM<Integer> {
+
+        private I32() {}
 
         private static ValueLayout.OfInt layout() {
             return JAVA_INT;
@@ -138,10 +144,10 @@ public interface Tuple2FFM<N> {
         }
 
         @Override
-        public <T extends UnaryTuple2<Integer>> T read(MemorySegment source, long index, Builder<T, Integer> builder) {
+        public <T extends UnaryTuple2<Integer>> T read(MemorySegment source, long index, Factory<T, Integer> factory) {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
-            return builder.build(
+            return factory.create(
                     source.getAtIndex(layout, at    ),
                     source.getAtIndex(layout, at + 1)
             );
@@ -149,6 +155,8 @@ public interface Tuple2FFM<N> {
     }
 
     final class I64 implements Tuple2FFM<Long> {
+
+        private I64() {}
 
         private static ValueLayout.OfLong layout() {
             return JAVA_LONG;
@@ -175,10 +183,10 @@ public interface Tuple2FFM<N> {
         }
 
         @Override
-        public <T extends UnaryTuple2<Long>> T read(MemorySegment source, long index, Builder<T, Long> builder) {
+        public <T extends UnaryTuple2<Long>> T read(MemorySegment source, long index, Factory<T, Long> factory) {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
-            return builder.build(
+            return factory.create(
                     source.getAtIndex(layout, at    ),
                     source.getAtIndex(layout, at + 1)
             );
@@ -186,6 +194,8 @@ public interface Tuple2FFM<N> {
     }
 
     final class F32 implements Tuple2FFM<Float> {
+
+        private F32() {}
 
         private static ValueLayout.OfFloat layout() {
             return JAVA_FLOAT;
@@ -212,10 +222,10 @@ public interface Tuple2FFM<N> {
         }
 
         @Override
-        public <T extends UnaryTuple2<Float>> T read(MemorySegment source, long index, Builder<T, Float> builder) {
+        public <T extends UnaryTuple2<Float>> T read(MemorySegment source, long index, Factory<T, Float> factory) {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
-            return builder.build(
+            return factory.create(
                     source.getAtIndex(layout, at    ),
                     source.getAtIndex(layout, at + 1)
             );
@@ -223,6 +233,8 @@ public interface Tuple2FFM<N> {
     }
 
     final class F64 implements Tuple2FFM<Double> {
+
+        private F64() {}
 
         private static ValueLayout.OfDouble layout() {
             return JAVA_DOUBLE;
@@ -249,10 +261,10 @@ public interface Tuple2FFM<N> {
         }
 
         @Override
-        public <T extends UnaryTuple2<Double>> T read(MemorySegment source, long index, Builder<T, Double> builder) {
+        public <T extends UnaryTuple2<Double>> T read(MemorySegment source, long index, Factory<T, Double> factory) {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
-            return builder.build(
+            return factory.create(
                     source.getAtIndex(layout, at    ),
                     source.getAtIndex(layout, at + 1)
             );
