@@ -120,22 +120,22 @@ public interface Matrix4FFM<N> {
         public void writeColumn(MemorySegment destination, long index, Matrix4<Float> matrix) {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
-            // Column 1
+            // Column 0
             destination.setAtIndex(layout, at    ,  matrix.m00());
             destination.setAtIndex(layout, at + 1,  matrix.m10());
             destination.setAtIndex(layout, at + 2,  matrix.m20());
             destination.setAtIndex(layout, at + 3,  matrix.m30());
-            // Column 2
+            // Column 1
             destination.setAtIndex(layout, at + 4,  matrix.m01());
             destination.setAtIndex(layout, at + 5,  matrix.m11());
             destination.setAtIndex(layout, at + 6,  matrix.m21());
             destination.setAtIndex(layout, at + 7,  matrix.m31());
-            // Column 3
+            // Column 2
             destination.setAtIndex(layout, at + 8,  matrix.m02());
             destination.setAtIndex(layout, at + 9,  matrix.m12());
             destination.setAtIndex(layout, at + 10, matrix.m22());
             destination.setAtIndex(layout, at + 11, matrix.m32());
-            // Column 4
+            // Column 3
             destination.setAtIndex(layout, at + 12, matrix.m03());
             destination.setAtIndex(layout, at + 13, matrix.m13());
             destination.setAtIndex(layout, at + 14, matrix.m23());
@@ -173,21 +173,22 @@ public interface Matrix4FFM<N> {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
             return factory.create(
+                    // Row 0
                     source.getAtIndex(layout, at    ),  // m00
                     source.getAtIndex(layout, at + 4),  // m01
                     source.getAtIndex(layout, at + 8),  // m02
                     source.getAtIndex(layout, at + 12), // m03
-
+                    // Row 1
                     source.getAtIndex(layout, at + 1),  // m10
                     source.getAtIndex(layout, at + 5),  // m11
                     source.getAtIndex(layout, at + 9),  // m12
                     source.getAtIndex(layout, at + 13), // m13
-
+                    // Row 2
                     source.getAtIndex(layout, at + 2),  // m20
                     source.getAtIndex(layout, at + 6),  // m21
                     source.getAtIndex(layout, at + 10), // m22
                     source.getAtIndex(layout, at + 14), // m23
-
+                    // Row 3
                     source.getAtIndex(layout, at + 3),  // m30
                     source.getAtIndex(layout, at + 7),  // m31
                     source.getAtIndex(layout, at + 11), // m32
@@ -201,25 +202,25 @@ public interface Matrix4FFM<N> {
             final long at = index * COMPONENT_COUNT;
             return factory.create(
                     // Row 0
-                    source.getAtIndex(layout, at    ),
-                    source.getAtIndex(layout, at + 1),
-                    source.getAtIndex(layout, at + 2),
-                    source.getAtIndex(layout, at + 3),
+                    source.getAtIndex(layout, at    ),  // m00
+                    source.getAtIndex(layout, at + 1),  // m01
+                    source.getAtIndex(layout, at + 2),  // m02
+                    source.getAtIndex(layout, at + 3),  // m03
                     // Row 1
-                    source.getAtIndex(layout, at + 4),
-                    source.getAtIndex(layout, at + 5),
-                    source.getAtIndex(layout, at + 6),
-                    source.getAtIndex(layout, at + 7),
+                    source.getAtIndex(layout, at + 4),  // m10
+                    source.getAtIndex(layout, at + 5),  // m11
+                    source.getAtIndex(layout, at + 6),  // m12
+                    source.getAtIndex(layout, at + 7),  // m13
                     // Row 2
-                    source.getAtIndex(layout, at + 8),
-                    source.getAtIndex(layout, at + 9),
-                    source.getAtIndex(layout, at + 10),
-                    source.getAtIndex(layout, at + 11),
+                    source.getAtIndex(layout, at + 8),  // m20
+                    source.getAtIndex(layout, at + 9),  // m21
+                    source.getAtIndex(layout, at + 10), // m22
+                    source.getAtIndex(layout, at + 11), // m23
                     // Row 3
-                    source.getAtIndex(layout, at + 12),
-                    source.getAtIndex(layout, at + 13),
-                    source.getAtIndex(layout, at + 14),
-                    source.getAtIndex(layout, at + 15)
+                    source.getAtIndex(layout, at + 12), // m30
+                    source.getAtIndex(layout, at + 13), // m31
+                    source.getAtIndex(layout, at + 14), // m32
+                    source.getAtIndex(layout, at + 15)  // m33
             );
         }
     }
@@ -241,22 +242,22 @@ public interface Matrix4FFM<N> {
         public void writeColumn(MemorySegment destination, long index, Matrix4<Double> matrix) {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
-            // Column 1
+            // Column 0
             destination.setAtIndex(layout, at    ,  matrix.m00());
             destination.setAtIndex(layout, at + 1,  matrix.m10());
             destination.setAtIndex(layout, at + 2,  matrix.m20());
             destination.setAtIndex(layout, at + 3,  matrix.m30());
-            // Column 2
+            // Column 1
             destination.setAtIndex(layout, at + 4,  matrix.m01());
             destination.setAtIndex(layout, at + 5,  matrix.m11());
             destination.setAtIndex(layout, at + 6,  matrix.m21());
             destination.setAtIndex(layout, at + 7,  matrix.m31());
-            // Column 3
+            // Column 2
             destination.setAtIndex(layout, at + 8,  matrix.m02());
             destination.setAtIndex(layout, at + 9,  matrix.m12());
             destination.setAtIndex(layout, at + 10, matrix.m22());
             destination.setAtIndex(layout, at + 11, matrix.m32());
-            // Column 4
+            // Column 3
             destination.setAtIndex(layout, at + 12, matrix.m03());
             destination.setAtIndex(layout, at + 13, matrix.m13());
             destination.setAtIndex(layout, at + 14, matrix.m23());
@@ -294,21 +295,22 @@ public interface Matrix4FFM<N> {
             final var layout = layout();
             final long at = index * COMPONENT_COUNT;
             return factory.create(
+                    // Row 0
                     source.getAtIndex(layout, at    ),  // m00
                     source.getAtIndex(layout, at + 4),  // m01
                     source.getAtIndex(layout, at + 8),  // m02
                     source.getAtIndex(layout, at + 12), // m03
-
+                    // Row 1
                     source.getAtIndex(layout, at + 1),  // m10
                     source.getAtIndex(layout, at + 5),  // m11
                     source.getAtIndex(layout, at + 9),  // m12
                     source.getAtIndex(layout, at + 13), // m13
-
+                    // Row 2
                     source.getAtIndex(layout, at + 2),  // m20
                     source.getAtIndex(layout, at + 6),  // m21
                     source.getAtIndex(layout, at + 10), // m22
                     source.getAtIndex(layout, at + 14), // m23
-
+                    // Row 3
                     source.getAtIndex(layout, at + 3),  // m30
                     source.getAtIndex(layout, at + 7),  // m31
                     source.getAtIndex(layout, at + 11), // m32
