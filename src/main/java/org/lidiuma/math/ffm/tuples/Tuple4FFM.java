@@ -22,10 +22,6 @@ public interface Tuple4FFM<N> {
 
     void write(MemorySegment destination, long index, UnaryTuple4<N> tuple);
 
-    default void write(MemorySegment destination, UnaryTuple4<N> tuple) {
-        write(destination, 0, tuple);
-    }
-
     <T extends UnaryTuple4<N>> T read(MemorySegment source, long index, Factory<T, N> factory);
 
     default <T extends UnaryTuple4<N>> T read(MemorySegment source, Factory<T, N> factory) {
