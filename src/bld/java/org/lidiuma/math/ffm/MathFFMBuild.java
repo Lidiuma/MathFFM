@@ -6,6 +6,7 @@ import rife.bld.publish.PublishInfo;
 import java.util.List;
 import static org.lidiuma.math.ffm.PublishUtil.*;
 import static rife.bld.dependencies.Repository.*;
+import static rife.bld.dependencies.Scope.test;
 
 public final class MathFFMBuild extends Project {
 
@@ -22,7 +23,16 @@ public final class MathFFMBuild extends Project {
         scope(Scope.compile)
                 .include(module("org.jspecify", "jspecify", version(1, 0, 0)))
                 .include(module("org.lidiuma.math", "math-api", version(1, 0, 0, "rc3")));
+
+        final var jUnitVersion = version(6,1,3);
+        scope(test)
+                .include(module("org.junit.jupiter", "junit-jupiter", jUnitVersion))
+                .include(module("org.junit.platform", "junit-platform-console-standalone", jUnitVersion));
+
         publishing();
+        // By keeping the parameters names in the compiled classes,
+        // I make it easier by implementors and people reading the API to understand clearly what the variables are.
+        compileOperation().compileOptions().parameters();
     }
 
     private void publishing() {
