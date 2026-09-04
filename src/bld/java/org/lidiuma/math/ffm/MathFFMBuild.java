@@ -19,7 +19,9 @@ public final class MathFFMBuild extends Project {
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL);
 
-        scope(Scope.compile).include(module("org.lidiuma.math", "math-api", version(1, 0, 0, "rc3")));
+        scope(Scope.compile)
+                .include(module("org.jspecify", "jspecify", version(1, 0, 0)))
+                .include(module("org.lidiuma.math", "math-api", version(1, 0, 0, "rc3")));
         publishing();
     }
 
