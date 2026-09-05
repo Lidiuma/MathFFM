@@ -8,5 +8,5 @@ implementation("org.lidiuma.math:math-ffm:0.1.0-SNAPSHOT")
 ```
 **Bld**
 ```java
-include("org.lidiuma.math", "math-ffm", snapshot(0,1,0))
+include(module("org.lidiuma.math", "math-ffm", snapshot(0,1,0)))
 ```
